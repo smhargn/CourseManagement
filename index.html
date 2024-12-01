@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      </style>
+</head>
+<body>
+<div class="container">
+    
+    <nav>
+        <div class="pageList">
+            <button class="page btn" data-target="addCourseScreen">Add a Course</button>
+            <button class="page btn" data-target="addStudentScreen">Add a Student</button>
+            <button class="page btn" data-target="registerDiv">Course Register</button>
+            <button class="page btn" data-target="display" onclick="displayCourses()">Manage Courses</button>
+            <button class="page btn" data-target="manageStudents" onclick="manageStudents()""  >Manage Students</button>
+            <button class="page btn" data-target="searchStudents">Search Student</button>
+            
+        </div>
+    </nav>
+
+    <main>
+        <div class="welcome">
+          <h1>Welcome to Course <br> Management System</h1>
+        </div>
+
+        
+
+        <div class="addCourseScreen">
+            <form method="GET"  id="courseForm">
+                <h1>Add Course</h1>
+                <div class="form-inputs">
+                  <input id="courseCode" type="text" placeholder="Course Code" class="input" />
+                </div>
+                <div class="form-inputs">
+                  <input id="courseName" type="text" placeholder="Course Name" class="input">
+                </div>
+                <div class="form-inputs">
+                  <input id="instructor" type="text" placeholder="Instructor Name" class="input">
+                </div>
+                <div class="form-inputs">
+                  <select name="pointScale" id="pointScale" class="dropdown">
+                    <option value=7>7</option>
+                    <option value=10>10</option>
+                  </select>
+                </div>
+                <button type="button" onclick="addCourse(event)" class="addCourseButton">Add</button>
+                
+              </form>
+        </div>
+
+        <div class="addStudentScreen">
+          <form method="GET"  id="studentForm">
+            <h1>Add Student</h1>
+            <div class="form-inputs">
+              <input id="studentID" type="text" placeholder="Student ID" class="input" />
+            </div>
+            <div class="form-inputs">
+              <input id="studentName" type="text" placeholder="Student Name" class="input">
+            </div>
+            <button type="button" onclick="addStudent(event)" class="addStudentButton">Add</button>
+            
+          </form>
+        </div>
+
+        <div id="registerDiv" class="registerDiv">
+          <form method="GET" onsubmit="return false;" id="registerForm">
+            <h1>Register</h1>
+            <div class="form-inputs">
+              <select name="courseList" id="courseList" class="dropdown">
+                <option value="" disabled selected>Select a Course</option>
+              </select>
+            </div>
+            <div class="form-inputs">
+              <select name="studentList" id="studentList" class="dropdown">
+                <option value="" disabled selected>Select a Student</option>
+              </select>
+            </div>
+            <div class="form-inputs">
+              <input id="midterm" type="number" placeholder=" " min="0" max="100" class="input">
+              <label for="midterm" class="placeholder">Midterm Score</label>
+            </div>
+            <div class="form-inputs">
+              <input id="final" type="number" placeholder=" " min="0" max="100" class="input">
+              <label for="final" class="placeholder">Final Score</label>
+            </div>
+            <button onclick="register()" class="submit">Register</button>
+          </form>
+        </div>
+
+        <div class="display">
+          
+          <button class="displayCourse" >Display Buton</button>
+          <div id="courseContainer">
+            <table id="courseTable">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                        <th>Instructor</th>
+                        <th>Point Scale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p id="courseCount"></p>
+        </div>
+<!--       </div>
+
+      <div class="display"> -->
+        <h1>Display Students</h1>
+        <div class="form-inputs">
+          <select name="courseListinDisplay" id="courseListinDisplay" class="dropdown">
+            <option value="" disabled selected>Select a Course</option>
+          </select>
+        </div>
+        <div class="form-inputs">
+          <select id="studentFilter" class="dropdown">
+            <option value="all" selected>All Students</option>
+            <option value="passed">Passed Students</option>
+            <option value="failed">Failed Students</option>
+          </select>
+        </div>
+        <button class="displayStudent" onclick="displayStudents()">Display Students</button>
+        <div id="studentContainer">
+          <table id="studentTable">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Student Course</th>
+                <th>Midterm</th>
+                <th>Final</th>
+                <th>Grade</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <p id="studentCount"></p>
+        </div>
+      </div>
+      
+
+
+        <div class="manageStudents">
+          <h1>Manage Students</h1>
+          <button onclick="manageStudents()" id="manageStudentButton" class="manageStudentButton" >Manage Student</button>
+          <div id="manageContainer">
+            <table id="manageTable">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Edit Buttons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p id="studentCount"></p>
+        </div>
+        </div>
+
+        <div class="searchStudents">
+          <h1>Search Students</h1>
+          <div class="form-inputs">
+            <input id="searchName" type="text" placeholder="Enter Name or ID" class="input" />
+          </div>
+          <button onclick="searchStudent()" id="searchStudentButton" class="searchStudentButton" >Search</button>
+          <div id="manageContainer">
+            <table id="manageTable2">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Student Course</th>
+                        <th>Midterm</th>
+                        <th>Final</th>
+                        <th>Grade</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p id="studentCount"></p>
+        </div>
+        </div>
+
+
+
+
+      
+        
+
+
+    </main>
+
+</div>
+
+    
+</body>
+</html>

@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #fff4e6;
+    
+}
+
+body {
+    background-color: #fff9db;
+    font-family: Kanit;
+    
+}
+
+.container {
+    max-width: 80rem;
+    height: 40rem;
+    padding: 0 3.2rem;
+    place-content: center;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.pageList {
+    display: flex;
+    flex-direction: column;
+    margin: 48px 16px 0px 16px;
+    gap: 12px;
+    
+    
+    
+}
+
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addCourseScreen,
+.addStudentScreen,
+.registerDiv,
+.display,
+.manageStudents,
+.searchStudents{
+    display: none;
+    
+}
+
+button {
+    padding: 4px 8px 4px 8px;
+    margin: 8px;
+    background-color: #ffd8a8;
+}
+
+.page {
+    border: 2px solid;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.form-inputs {
+    display: flex;
+    margin: 8px;
+    
+}
+
+.displayStudent,.displayCourse {
+    width: 128px;
+}
+
+.placeholder {
+    margin-left: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #fd7e14;
+}
+#courseContainer {
+    display: none; 
+}
+
+.input,.dropdown {
+    padding: 4px 8px 4px 8px;
+    border: 2px solid #ffa94d;
+    background-color: #ffd8a8;
+    border-radius: 4px;
+    width: 160px;
+    
+}
+
+.input:focus {
+    cursor: pointer;
+    background-color: #ff922b;
+  }
